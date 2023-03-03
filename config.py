@@ -2,14 +2,20 @@
 
 import os
 import sys
-import json
 
+    
 
 WF_BUNDLE = os.getenv('alfred_workflow_bundleid')
 CACHE_FOLDER = os.path.expanduser('~')+"/Library/Caches/com.runningwithcrayons.Alfred/Workflow Data/"+WF_BUNDLE+"/"
 DATA_FOLDER = os.path.expanduser('~')+"/Library/Application Support/Alfred/Workflow Data/"+WF_BUNDLE
 HISTORY_FILE = f"{DATA_FOLDER}/sweepHistory.json"
 OVERALL_RATE = f"{DATA_FOLDER}/overallRate.txt"
+
+SPRINT_DUR = str(os.getenv('sprintDur'))
+COMPLICE_CHECK = os.path.expanduser(os.getenv('COMPLICE_CHECK'))
+COMPLICE_TOKEN = os.path.expanduser(os.getenv('COMPLICE_TOKEN'))
+COMPLICE_INTENTION = os.path.expanduser(os.getenv('COMPLICE_INTENTION'))
+
 
 if not os.path.exists(DATA_FOLDER):
     os.makedirs(DATA_FOLDER)

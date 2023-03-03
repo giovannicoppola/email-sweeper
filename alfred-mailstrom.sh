@@ -62,7 +62,7 @@ else
 
 
 
-myOutput=$(osascript -e 'on run argv 
+mailboxCount=$(osascript -e 'on run argv 
 tell application "Microsoft Outlook"
 set mailAccount to first exchange account
 set InboxCount to (count messages in folder (item 1 of argv) of mailAccount)        
@@ -70,10 +70,36 @@ end tell
 end run' $WatchFolder)
  
 export LC_ALL=en_US.UTF-8 # need to change the locale to get the thousand separator to work!!
-printf -v myFormatCount "%'.0d" $myOutput
-pomoEstimate=$(echo "scale=1; $myOutput/$myOverallRate" | bc)
-#pomoEstimate=$((myOutput/myOverallRate))
-#printf -v pomoEstimateF "%'.1f" $pomoEstimate
+printf -v myFormatCount "%'.0d" $mailboxCount
+pomoEstimate=$(echo "scale=1; ($mailboxCount/$myOverallRate)/$sprintDur" | bc)
+
+totMinutesD=$(echo "$pomoEstimate * $sprintDur" | bc -l)
+totMinutes=$(printf "%.0f" "$totMinutesD")
+
+
+if [ $totMinutes -lt 60 ]; then
+    formatMinutes="$totMinutesM"
+elif [ $totMinutes -lt 1440 ]; then
+    hours="$((totMinutes / 60))h:"
+    minutes="$((totMinutes % 60))m"
+    formatMinutes="$hours$minutes"
+elif [ $totMinutes -lt 43800 ]; then
+    days="$((totMinutes / 1440))d:"
+    remainder=$((totMinutes % 1440))
+    hours="$((remainder / 60))h:"
+    minutes="$((remainder % 60))m"
+    formatMinutes="$days$hours$minutes"
+else
+    months="$((totMinutes / 43800))mo:"
+    remainder=$((totMinutes % 43800))
+    days="$((remainder / 1440))d:"
+    remainder=$((remainder % 1440))
+    hours="$((remainder / 60))h:"
+    minutes="$((remainder % 60))m"
+    formatMinutes="$months$days$hoursH$minutes"
+fi
+
+
 
 
 cat << EOB
@@ -83,9 +109,9 @@ cat << EOB
 
 
     {
-        "title": "You have $myFormatCount emails in $WatchFolder 📬 $pomoEstimate sprints needed @ $myOverallRate/min",
-        "subtitle": "↩️ to start a $sprintDur min 🧹 sprint",
-        "arg": $myOutput,
+        "title": "You have $myFormatCount emails in $WatchFolder 📬 $pomoEstimate $sprintDur-min sprints ($formatMinutes) needed @ $myOverallRate/min",
+        "subtitle": "↩️ to start a $sprintDur min sprint 🧹 ",
+        "arg": $mailboxCount,
         "icon": {
 			"path": "icon.png"
 			}	    
