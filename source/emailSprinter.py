@@ -40,7 +40,7 @@ from subprocess import Popen, PIPE, run
 sprintDurSec = str(int(SPRINT_DUR) * 60)
 scpt = '''
     on run {sprintDur, Email_Start, Email_StartF, sprintDurSec}
-        display notification ("Starting " & sprintDur & "-min sprint 💪") with title (Email_StartF & " emails to clear") subtitle (sprintDur & " min sprint") sound name "Frog"
+        display notification ("Starting " & sprintDur & "-min sprint 💪.. GO!") with title (Email_StartF & " emails to clear") subtitle (sprintDur & " min sprint") sound name "Frog"
 
                
         tell application "Menubar Countdown"

@@ -36,11 +36,11 @@
 	<key>createdby</key>
 	<string>giovanni</string>
 	<key>description</key>
-	<string></string>
+	<string>email maintenance assistant</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>_Email Sprinter</string>
+	<string>emailstrom</string>
 	<key>objects</key>
 	<array>
 		<dict>
@@ -59,7 +59,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>```</string>
+				<string>{var:mainkeyword}</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -113,12 +113,8 @@
 				<false/>
 				<key>modsmode</key>
 				<integer>0</integer>
-				<key>relatedApps</key>
-				<array>
-					<string>com.microsoft.Outlook</string>
-				</array>
 				<key>relatedAppsMode</key>
-				<integer>1</integer>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.trigger.hotkey</string>
@@ -154,7 +150,30 @@ python3 emailSprinter.py "$1"</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string># email-sweeper (or alfred-emailstrom)
+email sweep assistant
+
+![](emailstrom.png)
+
+- start 'email sprints'
+- record email sweep rate over time
+- estimate number of sprints and time needed to clear your inbox
+- optional for [Complice](https://complice.co/) users: record email sprints in your complice account
+- set in `Workflow Configuration`:
+	- keyword or hotkey to launch the workflow
+	- email folder to watch
+	- length of sprints
+	- complice-related stuff
+
+
+- [menubar countdown](https://github.com/kristopherjohnson/MenubarCountdown) needed to show a counter in the menubar. 
+	- `brew install --cask menubar-countdown` to install
+
+
+
+# Thank you
+- menubar countdown
+- icon: https://www.flaticon.com/free-icon/broom_2954888</string>
 	<key>uidata</key>
 	<dict>
 		<key>7733D050-C258-494D-8091-93A0D22F06F0</key>
@@ -185,7 +204,7 @@ python3 emailSprinter.py "$1"</string>
 			<key>config</key>
 			<dict>
 				<key>default</key>
-				<string></string>
+				<string>```</string>
 				<key>placeholder</key>
 				<string></string>
 				<key>required</key>
@@ -276,7 +295,7 @@ python3 emailSprinter.py "$1"</string>
 				<true/>
 			</dict>
 			<key>description</key>
-			<string>Needed if using Complice</string>
+			<string>Required if using the complice integration</string>
 			<key>label</key>
 			<string>Complice API Token</string>
 			<key>type</key>
@@ -292,12 +311,12 @@ python3 emailSprinter.py "$1"</string>
 				<key>placeholder</key>
 				<string></string>
 				<key>required</key>
-				<true/>
+				<false/>
 				<key>trim</key>
 				<true/>
 			</dict>
 			<key>description</key>
-			<string></string>
+			<string>Required if using the complice integration</string>
 			<key>label</key>
 			<string>Intention name</string>
 			<key>type</key>
@@ -306,6 +325,8 @@ python3 emailSprinter.py "$1"</string>
 			<string>COMPLICE_INTENTION</string>
 		</dict>
 	</array>
+	<key>variablesdontexport</key>
+	<array/>
 	<key>version</key>
 	<string>0.1</string>
 	<key>webaddress</key>
