@@ -21,5 +21,5 @@ email sweep assistant
 
 
 # Thank you
-- menubar countdown
+- [menubar countdown](https://github.com/kristopherjohnson/MenubarCountdown)
 - icon: https://www.flaticon.com/free-icon/broom_2954888
