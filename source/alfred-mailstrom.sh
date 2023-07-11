@@ -78,7 +78,7 @@ totMinutes=$(printf "%.0f" "$totMinutesD")
 
 
 if [ $totMinutes -lt 60 ]; then
-    formatMinutes="$totMinutesM"
+    formatMinutes=$(printf "%s%s" "$totMinutes" "m")
 elif [ $totMinutes -lt 1440 ]; then
     hours="$((totMinutes / 60))h:"
     minutes="$((totMinutes % 60))m"
