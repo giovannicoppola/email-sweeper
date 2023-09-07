@@ -139,7 +139,7 @@ myTimeEndF = time.strftime('%I:%M %p', time.localtime(myTimeEnd))
 reportString = f"""## Mailstrom {SPRINT_DUR}-min sprint ({sweepCount})
 - {myTimeStartF}-{myTimeEndF}
 - {Email_Swept} emails swept, from {Email_StartF} to {Email_End}
-- Sweep rate: {currentRun['SweepRate']}, overall sweep rate: {overallRate:.2f}/min"""
+- Sweep rate: {currentRun['SweepRate']:.2f}, overall sweep rate: {overallRate:.2f}/min"""
 
 # Copy the string to the clipboard
 run('pbcopy', universal_newlines=True, input=reportString)
@@ -156,9 +156,10 @@ def get_emailZID(intention):
     
     myResponse =  (resp.json())
     intentions = myResponse['list']
+    
     myZID = ''
     for xx in intentions:
-        if xx["text"] == intention:
+        if f"{xx['_c']}) {xx['t']}" == intention:
             myZID = xx["zid"]
             break
     
@@ -179,7 +180,7 @@ def post_intention(intention):
     intentions = myResponse['core']['list']
     myZID = ''
     for xx in intentions:
-        if xx["text"] == intention:
+        if xx["t"] == intention:
             myZID = xx["zid"]
             break
     
