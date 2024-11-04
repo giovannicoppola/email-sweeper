@@ -99,7 +99,11 @@ else
     formatMinutes="$months$days$hoursH$minutes"
 fi
 
+# Get current time in seconds
+now=$(date +%s)
 
+# Add sprint duration to current time
+endRun=$(date -j -f "%s" "$((now + sprintDur * 60))" +%H:%M)
 
 
 cat << EOB
@@ -110,7 +114,7 @@ cat << EOB
 
     {
         "title": "You have $myFormatCount emails in $WatchFolder 📬 $pomoEstimate $sprintDur-min sprints ($formatMinutes) needed @ $myOverallRate/min",
-        "subtitle": "↩️ to start a $sprintDur min sprint 🧹 ",
+        "subtitle": "↩️ to start a $sprintDur min sprint 🧹 until $endRun",
         "arg": $mailboxCount,
         "icon": {
 			"path": "icon.png"

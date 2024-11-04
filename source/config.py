@@ -16,6 +16,9 @@ COMPLICE_CHECK = os.path.expanduser(os.getenv('COMPLICE_CHECK'))
 COMPLICE_TOKEN = os.path.expanduser(os.getenv('COMPLICE_TOKEN'))
 COMPLICE_INTENTION = os.path.expanduser(os.getenv('COMPLICE_INTENTION'))
 
+OBSIDIAN_CHECK = os.path.expanduser(os.getenv('OBSIDIAN_CHECK'))
+OBSIDIAN_VAULT_PATH = os.path.expanduser(os.getenv('OBSIDIAN_VAULT_PATH'))
+OBSIDIAN_DAILY = os.path.expanduser(os.getenv('DAILY_FORMAT'))
 
 if not os.path.exists(DATA_FOLDER):
     os.makedirs(DATA_FOLDER)
