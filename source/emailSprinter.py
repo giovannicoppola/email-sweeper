@@ -121,8 +121,9 @@ def main ():
                 set play notification sound to false
                 set speak announcement to false
                 start timer
-        
-            
+
+            do shell script "command -v sketchybar >/dev/null 2>&1 && sketchybar --trigger countdown_started &"
+
             delay (sprintDurSec as integer)
             
                 stop timer
